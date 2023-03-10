@@ -1,4 +1,4 @@
-import axios from "axios";
+const axios = require("axios");
 
 const makeRequest = async (
     baseURL ,
@@ -19,4 +19,6 @@ const makeRequest = async (
   }
 };
 
-export default makeRequest;
+module.exports={
+  makeRequest
+} 

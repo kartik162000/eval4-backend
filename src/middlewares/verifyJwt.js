@@ -5,7 +5,7 @@ const verifyJwt = async (req, res, next) => {
     const token = req.headers.authorization;
     const response = await makeRequest('http://localhost:4000/',{url:'user/verify',method:'get'}, {
       headers: {
-        authorization: `${token}`,
+        authorization: `Bearer ${token}`,
       },
     });
     if(response.success)
