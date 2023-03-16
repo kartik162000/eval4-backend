@@ -1,14 +1,17 @@
 const makeRequest = require('../utils/makeRequest');
+const axios = require('axios');
 
 const verifyJwt = async (req, res, next) => {
   try {
+    console.log("I m in middleware",req.headers.authorization);
     const token = req.headers.authorization;
-    const response = await makeRequest('http://localhost:4000/',{url:'user/verify',method:'get'}, {
+    const response = await axios.get('http://localhost:8000/user/verify', {
       headers: {
-        authorization: `Bearer ${token}`,
-      },
+        authorization: token,
+        }
     });
-    if(response.success)
+    console.log("response",response);
+    if(response.data.success)
         next();
     else
     return res.status(401).json({
